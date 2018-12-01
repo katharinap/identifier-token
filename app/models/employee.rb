@@ -14,15 +14,11 @@
 #
 
 class Employee < ApplicationRecord
-  belongs_to :company
+  belongs_to :company, counter_cache: true
   has_many :clients
 
   has_unique_identifier :identifier,
                         segment_count: 3,
                         segment_size: 2,
                         delimiter: '-'
-
-  def client_count
-    clients.count
-  end
 end

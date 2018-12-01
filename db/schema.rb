@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_01_110727) do
+ActiveRecord::Schema.define(version: 2018_12_01_142621) do
 
   create_table "clients", force: :cascade do |t|
     t.string "first_name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2018_12_01_110727) do
     t.string "identity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "employees_count", default: 0
     t.index ["identity"], name: "index_companies_on_identity", unique: true
   end
 
@@ -38,6 +39,7 @@ ActiveRecord::Schema.define(version: 2018_12_01_110727) do
     t.integer "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "clients_count", default: 0
     t.index ["company_id"], name: "index_employees_on_company_id"
     t.index ["identifier"], name: "index_employees_on_identifier", unique: true
   end

@@ -23,11 +23,11 @@ RSpec.describe Employee, type: :model do
     end
   end
 
-  describe '#client_count' do
+  describe '#clients_count' do
     it 'returns the number of associated clients' do
       employee = create(:employee)
       create_list(:client, 3, employee: employee)
-      expect(employee.client_count).to eq(3)
+      expect(employee.clients_count).to eq(3)
     end
   end
 end

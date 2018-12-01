@@ -14,7 +14,7 @@
 #
 
 class Client < ApplicationRecord
-  belongs_to :employee
+  belongs_to :employee, counter_cache: true
 
   has_unique_identifier :ctoken,
                         segment_count: 3,
