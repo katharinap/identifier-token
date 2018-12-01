@@ -12,6 +12,8 @@
 #
 
 class Company < ApplicationRecord
+  has_many :employees
+
   before_create :set_identity_token
 
   private
