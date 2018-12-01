@@ -9,7 +9,7 @@
 	      <%= link_to "Employee Count: #{company.employees_count}", company_employees_path(company), class: "text-muted" %>
 	  </div>
 	  <div class="col-3 client-count">
-	      Client Count: <%= company.clients_count %>
+	      <%= link_to "Client Count: #{company.clients_count}", company_clients_path(company), class: "text-muted" %>
 	  </div>
 	  <div class="col-3">
 	      <%= link_to 'Edit', edit_company_path(company), class: "btn btn-secondary btn-sm" %>

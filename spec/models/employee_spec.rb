@@ -30,4 +30,11 @@ RSpec.describe Employee, type: :model do
       expect(employee.clients_count).to eq(3)
     end
   end
+
+  describe '#full_name' do
+    it 'returns a string with first and last name' do
+      employee = create(:employee, first_name: 'John', last_name: 'Miller')
+      expect(employee.full_name).to eq('John Miller')
+    end
+  end
 end

@@ -20,4 +20,12 @@ class Client < ApplicationRecord
                         segment_count: 3,
                         segment_size: 2,
                         delimiter: '-'
+
+  delegate :full_name, to: :name
+
+  private
+
+  def name
+    Name.new(first_name, last_name)
+  end
 end

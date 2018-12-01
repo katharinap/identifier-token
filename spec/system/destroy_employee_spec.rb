@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'destroying an employee' do
-  it 'allows the user to destroy a company' do
-    company = create(:company, name: 'Obsolete Company')
+  it 'allows the user to destroy an employee' do
+    company = create(:company)
     employees = create_list(:employee, 2, company: company)
     employee = employees.first
     create_list(:client, 1, employee: employee)

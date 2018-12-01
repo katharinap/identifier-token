@@ -22,4 +22,11 @@ RSpec.describe Client, type: :model do
       expect(client.ctoken).to match(/^[A-Z]{2}-[A-Z]{2}-[A-Z]{2}$/)
     end
   end
+
+  describe '#full_name' do
+    it 'returns a string with first and last name' do
+      client = create(:client, first_name: 'Sarah', last_name: 'Jones')
+      expect(client.full_name).to eq('Sarah Jones')
+    end
+  end
 end

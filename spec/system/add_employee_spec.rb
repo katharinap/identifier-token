@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'adding an employee to a company' do
-  it 'allows the user to add a company' do
+  it 'allows the user to add an employee' do
     company = create(:company)
     create_list(:employee, 2, company: company)
     visit(company_employees_path(company))

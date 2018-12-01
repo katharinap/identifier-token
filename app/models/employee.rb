@@ -22,7 +22,11 @@ class Employee < ApplicationRecord
                         segment_size: 2,
                         delimiter: '-'
 
-  def full_name
-    "#{first_name} #{last_name}"
+  delegate :full_name, to: :name
+
+  private
+
+  def name
+    Name.new(first_name, last_name)
   end
 end

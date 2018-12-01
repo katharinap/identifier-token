@@ -14,9 +14,10 @@ RSpec.describe 'listing employees of a company' do
 
     employee = employees.first
     within("#employee-#{employee.id}") do
-      expect(page).to have_selector('.full-name', text: "#{employee.first_name} #{employee.last_name}")
+      expect(page).to have_selector('.full-name', text: employee.full_name)
       expect(page).to have_selector('.identifier', text: employee.identifier)
-      expect(page).to have_selector('.client-count', text: employee.clients_count)
+      expect(page).to have_selector('.client-count', text: 3)
+      expect(page).to have_link('3', href: employee_clients_path(employee))
     end
   end
 end

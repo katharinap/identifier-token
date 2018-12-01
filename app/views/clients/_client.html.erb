@@ -1,0 +1,19 @@
+<div id="client-<%= client.id %>" class="client card">
+    <div class="card-body">
+      <h5 class="card-title full-name"><%= client.full_name %></h5>
+      <div class="row">
+	  <div class="col-4 ctoken">
+	      Client Token: <%= client.ctoken %>
+	  </div>
+	  <% if show_employee %>
+	  <div class="col-4 employee-full-name">
+	    <%= link_to "Employee: #{client.employee.full_name}", employee_clients_path(client.employee), class: "text-muted" %>
+	  </div>
+	  <% end %>
+	  <div class="col-4">
+	      <%= link_to 'Edit', edit_client_path(client), class: "btn btn-secondary btn-sm" %>
+	      <%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+	  </div>
+      </div>
+    </div>
+</div>
