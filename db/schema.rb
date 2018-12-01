@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_01_095020) do
+ActiveRecord::Schema.define(version: 2018_12_01_110727) do
+
+  create_table "clients", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "ctoken"
+    t.integer "employee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ctoken"], name: "index_clients_on_ctoken", unique: true
+    t.index ["employee_id"], name: "index_clients_on_employee_id"
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name"

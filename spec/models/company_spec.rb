@@ -16,7 +16,7 @@ require 'rails_helper'
 RSpec.describe Company, type: :model do
   describe '.create' do
     it 'sets the identity attribute to a string of the format ABCD:EFGH' do
-      company = Company.create(name: 'Something Inc')
+      company = create(:company)
       expect(company.identity).to match(/^[A-Z]{4}:[A-Z]{4}$/)
     end
   end

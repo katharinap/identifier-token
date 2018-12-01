@@ -15,6 +15,7 @@
 
 class Employee < ApplicationRecord
   belongs_to :company
+  has_many :clients
 
   has_unique_identifier :identifier,
                         segment_count: 3,

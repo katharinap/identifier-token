@@ -18,8 +18,7 @@ require 'rails_helper'
 RSpec.describe Employee, type: :model do
   describe '.create' do
     it 'sets the identifier attribute to a string of the format AB-GH-KL' do
-      company = Company.create(name: 'Another Inc')
-      employee = company.employees.create(first_name: 'First', last_name: 'Last')
+      employee = create(:employee)
       expect(employee.identifier).to match(/^[A-Z]{2}-[A-Z]{2}-[A-Z]{2}$/)
     end
   end
