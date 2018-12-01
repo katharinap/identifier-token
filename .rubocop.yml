@@ -1,0 +1,30 @@
+AllCops:
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  TargetRubyVersion: 2.5
+  Exclude:
+    - 'db/**/*'
+    - 'bin/*'
+
+Metrics/LineLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'config/**/*'
+    - 'Gemfile'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'spec/**/*'
+    
+Style/Documentation:
+  Exclude:
+    - 'app/controllers/*'
+    - 'app/helpers/*'
+    - 'app/mailers/*'
+    - 'app/models/*'
+    - 'spec/**/*'
+    - 'config/**/*'
