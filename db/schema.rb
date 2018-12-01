@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2018_12_01_142621) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "clients", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "ctoken"
-    t.integer "employee_id"
+    t.bigint "employee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ctoken"], name: "index_clients_on_ctoken", unique: true
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 2018_12_01_142621) do
     t.string "first_name"
     t.string "last_name"
     t.string "identifier"
-    t.integer "company_id"
+    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "clients_count", default: 0
@@ -44,4 +47,6 @@ ActiveRecord::Schema.define(version: 2018_12_01_142621) do
     t.index ["identifier"], name: "index_employees_on_identifier", unique: true
   end
 
+  add_foreign_key "clients", "employees"
+  add_foreign_key "employees", "companies"
 end
