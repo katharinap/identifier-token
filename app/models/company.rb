@@ -14,22 +14,8 @@
 class Company < ApplicationRecord
   has_many :employees
 
-  before_create :set_identity_token
-
-  private
-
-  def set_identity_token
-    self.identity = generate_token
-  end
-
-  def generate_token
-    loop do
-      token = [token_sequence, token_sequence].join(':')
-      break token unless self.class.where(identity: token).exists?
-    end
-  end
-
-  def token_sequence
-    Array.new(4) { ('A'..'Z').to_a.sample }.join
-  end
+  has_unique_identifier :identity,
+                        segment_count: 2,
+                        segment_size: 4,
+                        delimiter: ':'
 end

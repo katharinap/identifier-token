@@ -8,17 +8,18 @@ AllCops:
 
 Metrics/LineLength:
   Exclude:
-    - 'spec/**/*'
+    - '**/spec/**/*'
     - 'config/**/*'
     - 'Gemfile'
+    - '**/*.gemspec'
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*'
+    - '**/spec/**/*'
 
 Metrics/ModuleLength:
   Exclude:
-    - 'spec/**/*'
+    - '**/spec/**/*'
     
 Style/Documentation:
   Exclude:
