@@ -9,8 +9,8 @@ RSpec.describe 'adding an employee to a company' do
     visit(company_employees_path(company))
     click_on('New Employee')
     expect(current_path).to eq(new_company_employee_path(company))
-    fill_in('First name', with: 'Erika')
-    fill_in('Last name', with: 'Mustermann')
+    fill_in('First Name', with: 'Erika')
+    fill_in('Last Name', with: 'Mustermann')
     click_on('Create Employee')
 
     expect(current_path).to eq(company_employees_path(company))

@@ -15,8 +15,8 @@ RSpec.describe 'editing an employee of a company' do
     end
 
     expect(current_path).to eq(edit_employee_path(employee))
-    fill_in('First name', with: 'Joe')
-    fill_in('Last name', with: 'Black')
+    fill_in('First Name', with: 'Joe')
+    fill_in('Last Name', with: 'Black')
     click_on('Update Employee')
 
     expect(current_path).to eq(company_employees_path(company))

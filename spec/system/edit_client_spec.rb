@@ -15,8 +15,8 @@ RSpec.describe 'editing a client of a employee' do
     end
 
     expect(current_path).to eq(edit_client_path(client))
-    fill_in('First name', with: 'Fred')
-    fill_in('Last name', with: 'Green')
+    fill_in('First Name', with: 'Fred')
+    fill_in('Last Name', with: 'Green')
     click_on('Update Client')
 
     expect(current_path).to eq(employee_clients_path(employee))

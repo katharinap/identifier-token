@@ -9,8 +9,8 @@ RSpec.describe 'adding an client to a employee' do
     visit(employee_clients_path(employee))
     click_on('New Client')
     expect(current_path).to eq(new_employee_client_path(employee))
-    fill_in('First name', with: 'Max')
-    fill_in('Last name', with: 'Mustermann')
+    fill_in('First Name', with: 'Max')
+    fill_in('Last Name', with: 'Mustermann')
     click_on('Create Client')
 
     expect(current_path).to eq(employee_clients_path(employee))
