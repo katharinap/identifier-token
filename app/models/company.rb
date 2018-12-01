@@ -18,4 +18,12 @@ class Company < ApplicationRecord
                         segment_count: 2,
                         segment_size: 4,
                         delimiter: ':'
+
+  def employee_count
+    employees.count
+  end
+
+  def client_count
+    employees.map(&:client_count).reduce(0, :+)
+  end
 end

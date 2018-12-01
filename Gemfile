@@ -40,6 +40,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'has_unique_identifier', path: 'lib/has_unique_identifier'
 
+gem 'bootstrap', '~> 4.0'
+gem 'jquery-rails', '~> 4.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -58,6 +61,12 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'annotate'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

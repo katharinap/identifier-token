@@ -21,4 +21,8 @@ class Employee < ApplicationRecord
                         segment_count: 3,
                         segment_size: 2,
                         delimiter: '-'
+
+  def client_count
+    clients.count
+  end
 end

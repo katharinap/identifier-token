@@ -1,0 +1,20 @@
+<div id="company-<%= company.id %>" class="company card">
+    <div class="card-body">
+      <h5 class="card-title name"><%= company.name %></h5>
+      <div class="row">
+	  <div class="col-3 identity">
+	      Identity: <%= company.identity %>
+	  </div>
+	  <div class="col-3 employee-count">
+	      Employee Count: <%= company.employee_count %>
+	  </div>
+	  <div class="col-3 client-count">
+	      Client Count: <%= company.client_count %>
+	  </div>
+	  <div class="col-3">
+	      <%= link_to 'Edit', edit_company_path(company), class: "btn btn-secondary btn-sm" %>
+	      <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+	  </div>
+      </div>
+    </div>
+</div>
