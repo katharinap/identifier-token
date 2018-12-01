@@ -6,7 +6,7 @@
 	      Identity: <%= company.identity %>
 	  </div>
 	  <div class="col-3 employee-count">
-	      Employee Count: <%= company.employees_count %>
+	      <%= link_to "Employee Count: #{company.employees_count}", company_employees_path(company), class: "text-muted" %>
 	  </div>
 	  <div class="col-3 client-count">
 	      Client Count: <%= company.clients_count %>

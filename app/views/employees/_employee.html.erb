@@ -1,0 +1,17 @@
+<div id="employee-<%= employee.id %>" class="employee card">
+    <div class="card-body">
+      <h5 class="card-title full-name"><%= employee.full_name %></h5>
+      <div class="row">
+	  <div class="col-4 identifier">
+	      Identifier: <%= employee.identifier %>
+	  </div>
+	  <div class="col-4 client-count">
+	      Client Count: <%= employee.clients_count %>
+	  </div>
+	  <div class="col-4">
+	      <%= link_to 'Edit', edit_employee_path(employee), class: "btn btn-secondary btn-sm" %>
+	      <%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+	  </div>
+      </div>
+    </div>
+</div>

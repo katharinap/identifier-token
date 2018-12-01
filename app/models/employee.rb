@@ -15,10 +15,14 @@
 
 class Employee < ApplicationRecord
   belongs_to :company, counter_cache: true
-  has_many :clients
+  has_many :clients, dependent: :destroy
 
   has_unique_identifier :identifier,
                         segment_count: 3,
                         segment_size: 2,
                         delimiter: '-'
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

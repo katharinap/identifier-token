@@ -11,7 +11,11 @@ RSpec.describe 'adding a company' do
     click_on('Create Company')
 
     expect(current_path).to eq(companies_path)
-    expect(page).to have_content('Unicorn LLC')
     expect(page).to have_content('Company was successfully created.')
+
+    company = Company.last
+    within("#company-#{company.id}") do
+      expect(page).to have_selector('.name', text: 'Unicorn LLC')
+    end
   end
 end

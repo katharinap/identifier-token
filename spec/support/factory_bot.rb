@@ -2,7 +2,9 @@
 
 FactoryBot.define do
   factory :company do
-    name { 'Something Inc' }
+    sequence :name do |n|
+      "The Company #{n}"
+    end
   end
 
   factory :employee do

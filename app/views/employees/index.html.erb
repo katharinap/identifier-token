@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Employees</h1>
+<h2>Company: <%= @company.name %></h2>
+
+<%= render partial: "employee", collection: @employees %>
+
+<%= link_to 'New Employee', new_company_employee_path(@company), class: "btn btn-secondary" %>
