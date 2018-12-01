@@ -1,4 +1,4 @@
-<%= form_with(model: client, local: true, url: (client.new_record? ? [@employee, client]: client)) do |form| %>
+<%= form_with(model: client, local: true, url: (client.new_record? ? [@employee, client]: client), builder: BootstrapFormBuilder) do |form| %>
   <% if client.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(client.errors.count, "error") %> prohibited this client from being saved:</h2>
@@ -11,21 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <%= form.group :first_name do %>
     <%= form.label :first_name, 'First Name' %>
     <%= form.text_field :first_name %>
-  </div>
+  <% end %>
 
-  <div class="field">
+  <%= form.group :last_name do %>
     <%= form.label :last_name, 'Last Name' %>
     <%= form.text_field :last_name %>
-  </div>
+  <% end %>
 
-  <div class="field">
+  <%= form.group :employee do %>
     <%= form.label :employee %>
     <%= form.hidden_field :employee_id %>
-    <%= text_field_tag :employee, @employee.full_name, readonly: true %>
-  </div>
+    <%= form.text_field :employee, value: @employee.full_name, readonly: true %>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

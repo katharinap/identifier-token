@@ -1,4 +1,4 @@
-<%= form_with(model: employee, local: true, url: (employee.new_record? ? [@company, employee]: employee)) do |form| %>
+<%= form_with(model: employee, local: true, url: (employee.new_record? ? [@company, employee]: employee), builder: BootstrapFormBuilder) do |form| %>
   <% if employee.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
@@ -11,21 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <%= form.group :name do %>
     <%= form.label :first_name, 'First Name' %>
     <%= form.text_field :first_name %>
-  </div>
+  <% end %>
 
-  <div class="field">
+  <%= form.group :name do %>
     <%= form.label :last_name, 'Last Name' %>
     <%= form.text_field :last_name %>
-  </div>
+  <% end %>
 
-  <div class="field">
+  <%= form.group :name do %>
     <%= form.label :company %>
     <%= form.hidden_field :company_id %>
-    <%= text_field_tag :company, @company.name, readonly: true %>
-  </div>
+    <%= form.text_field :company, value: @company.name, readonly: true %>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
