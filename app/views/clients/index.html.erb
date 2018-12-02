@@ -1,9 +1,8 @@
-<p id="notice"><%= notice %></p>
+<div class="clearfix">
+    <div class="float-right">
+	<%= link_to 'New Client', new_employee_client_path(@employee), class: "btn btn-primary btn-sm m-2" %>
+    </div>
+</div>
 
-<h1>Clients</h1>
-<h2>Company: <%= @company.name %></h2>
-<h2>Employee: <%= @employee.full_name %></h2>
+<%= render partial: "client", collection: @clients.sort_by(&:full_name)  %>
 
-<%= render partial: "client", collection: @clients, locals: { show_employee: false }  %>
-
-<%= link_to 'New Client', new_employee_client_path(@employee), class: "btn btn-secondary" %>

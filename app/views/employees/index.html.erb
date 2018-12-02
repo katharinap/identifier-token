@@ -1,8 +1,8 @@
-<p id="notice"><%= notice %></p>
+<div class="clearfix">
+    <div class="float-right">
+	<%= link_to 'New Employee', new_company_employee_path(@company), class: "btn btn-primary btn-sm m-2" %>
+    </div>
+</div>
 
-<h1>Employees</h1>
-<h2>Company: <%= @company.name %></h2>
+<%= render partial: "employee", collection: @employees.sort_by(&:full_name) %>
 
-<%= render partial: "employee", collection: @employees %>
-
-<%= link_to 'New Employee', new_company_employee_path(@company), class: "btn btn-secondary" %>

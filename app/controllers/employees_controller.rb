@@ -5,7 +5,7 @@ class EmployeesController < ApplicationController
   before_action :set_company, except: %i[update destroy]
 
   def index
-    @employees = @company.employees.sort_by(&:full_name)
+    @employees = @company.employees
   end
 
   def new

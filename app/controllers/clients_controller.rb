@@ -2,29 +2,33 @@
 
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[edit update destroy]
-  before_action :set_employee, except: %i[index update destroy]
-  before_action :set_company_employees, only: %i[edit new]
 
   def index
     if params[:company_id]
-      @company = Company.includes(employees: :clients).find(params[:company_id])
-      @clients = @company.employees.map(&:clients).flatten
-      render :index_company
+      @company = Company.find(params[:company_id])
+      @clients = @company.clients
+      @employee = @company.employees.first
     else
-      set_employee
+      @employee = Employee.find(params[:employee_id])
       @company = @employee.company
-      @clients = @employee.clients.sort_by(&:full_name)
+      @clients = @employee.clients
     end
   end
 
   def new
+    @employee = Employee.find(params[:employee_id])
     @client = @employee.clients.build
+    @company_employees = @employee.co_workers(include_self: true)
   end
 
-  def edit; end
+  def edit
+    @employee = @client.employee
+    @company_employees = @employee.co_workers(include_self: true)
+  end
 
   def create
-    @client = @employee.clients.build(client_params)
+    @client = Client.new(client_params)
+    @employee = @client.employee
 
     if @client.save
       # rubocop:disable Metrics/LineLength
@@ -53,16 +57,6 @@ class ClientsController < ApplicationController
 
   def set_client
     @client = Client.find(params[:id])
-  end
-
-  def set_employee
-    # rubocop:disable Metrics/LineLength
-    @employee = params[:employee_id] ? Employee.find(params[:employee_id]) : @client.employee
-    # rubocop:enable Metrics/LineLength
-  end
-
-  def set_company_employees
-    @company_employees = @employee.co_workers(include_self: true)
   end
 
   def client_params

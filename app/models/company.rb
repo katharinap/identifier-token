@@ -13,6 +13,7 @@
 
 class Company < ApplicationRecord
   has_many :employees, dependent: :destroy
+  has_many :clients, -> { distinct }, through: :employees
 
   has_unique_identifier :identity,
                         segment_count: 2,

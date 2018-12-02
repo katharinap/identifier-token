@@ -41,6 +41,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'has_unique_identifier', path: 'lib/has_unique_identifier'
 
 gem 'bootstrap', '~> 4.0'
+gem 'font-awesome-rails'
 gem 'jquery-rails', '~> 4.0'
 
 gem 'faker'
