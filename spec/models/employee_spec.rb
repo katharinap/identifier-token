@@ -53,4 +53,17 @@ RSpec.describe Employee, type: :model do
       expect(employees.first.co_workers(include_self: true)).to eq(employees)
     end
   end
+
+  describe '#allow_destroy?' do
+    it 'returns false if the employee still has any clients assigned' do
+      employee = create(:employee)
+      create(:client, employee: employee)
+      expect(employee.allow_destroy?).to be_falsey
+    end
+
+    it 'returns true if the employee does not have any clients assigned' do
+      employee = create(:employee)
+      expect(employee.allow_destroy?).to be_truthy
+    end
+  end
 end

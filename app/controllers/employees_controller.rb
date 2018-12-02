@@ -40,9 +40,13 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
-    @employee.destroy
     # rubocop:disable Metrics/LineLength
-    redirect_to company_employees_path(@employee.company), notice: 'Employee was successfully destroyed.'
+    if @employee.allow_destroy?
+      @employee.destroy
+      redirect_to company_employees_path(@employee.company), notice: 'Employee was successfully destroyed.'
+    else
+      redirect_to company_employees_path(@employee.company), alert: 'Cannot destroy employee with assigned clients.'
+    end
     # rubocop:enable Metrics/LineLength
   end
 

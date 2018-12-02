@@ -28,6 +28,10 @@ class Employee < ApplicationRecord
     include_self ? company.employees : company.employees - [self]
   end
 
+  def allow_destroy?
+    clients_count.zero?
+  end
+
   private
 
   def name
