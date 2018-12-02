@@ -10,9 +10,12 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = @company.employees.build
+    @companies = Company.all
   end
 
-  def edit; end
+  def edit
+    @companies = Company.all
+  end
 
   def create
     @employee = @company.employees.build(employee_params)
@@ -56,6 +59,6 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    params.require(:employee).permit(:first_name, :last_name)
+    params.require(:employee).permit(:first_name, :last_name, :company_id)
   end
 end

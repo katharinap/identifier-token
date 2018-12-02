@@ -10,6 +10,10 @@ class BootstrapFormBuilder < ActionView::Helpers::FormBuilder
     super(method, insert_class('form-control', options))
   end
 
+  def select(method, choices, options = {}, html_options = {})
+    super(method, choices, options, insert_class('form-control', html_options))
+  end
+
   def submit(value = nil, options = {})
     super(value, insert_class('btn btn-primary', options))
   end

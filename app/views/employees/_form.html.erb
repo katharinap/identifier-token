@@ -21,10 +21,9 @@
     <%= form.text_field :last_name %>
   <% end %>
 
-  <%= form.group :name do %>
-    <%= form.label :company %>
-    <%= form.hidden_field :company_id %>
-    <%= form.text_field :company, value: @company.name, readonly: true %>
+  <%= form.group :company_id do %>
+    <%= form.label :company_id %>
+    <%= form.select :company_id, @companies.sort_by(&:name).map { |c| [c.name, c.id] } %>
   <% end %>
 
   <div class="actions">
