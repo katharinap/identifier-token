@@ -21,10 +21,9 @@
     <%= form.text_field :last_name %>
   <% end %>
 
-  <%= form.group :employee do %>
-    <%= form.label :employee %>
-    <%= form.hidden_field :employee_id %>
-    <%= form.text_field :employee, value: @employee.full_name, readonly: true %>
+  <%= form.group :employee_id do %>
+    <%= form.label :employee_id %>
+    <%= form.select :employee_id, @company_employees.sort_by(&:full_name).map { |e| [e.full_name, e.id] } %>
   <% end %>
 
   <div class="actions">

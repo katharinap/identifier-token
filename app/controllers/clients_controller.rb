@@ -3,6 +3,7 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: %i[edit update destroy]
   before_action :set_employee, except: %i[index update destroy]
+  before_action :set_company_employees, only: %i[edit new]
 
   def index
     if params[:company_id]
@@ -35,13 +36,10 @@ class ClientsController < ApplicationController
   end
 
   def update
-    if @client.update(client_params)
-      # rubocop:disable Metrics/LineLength
-      redirect_to employee_clients_path(@client.employee), notice: 'Client was successfully updated.'
+    UpdatesClient.new(@client, client_params)
+    # rubocop:disable Metrics/LineLength
+    redirect_to employee_clients_path(@client.employee), notice: 'Client was successfully updated.'
     # rubocop:enable Metrics/LineLength
-    else
-      render :edit
-    end
   end
 
   def destroy
@@ -63,7 +61,11 @@ class ClientsController < ApplicationController
     # rubocop:enable Metrics/LineLength
   end
 
+  def set_company_employees
+    @company_employees = @employee.co_workers(include_self: true)
+  end
+
   def client_params
-    params.require(:client).permit(:first_name, :last_name)
+    params.require(:client).permit(:first_name, :last_name, :employee_id)
   end
 end

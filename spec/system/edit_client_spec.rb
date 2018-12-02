@@ -26,4 +26,25 @@ RSpec.describe 'editing a client of a employee' do
       expect(page).to have_selector('.full-name', text: 'Fred Green')
     end
   end
+
+  it 'allows the client to be assigned to another employee of the same company' do
+    company = create(:company)
+    employee1 = create(:employee, first_name: 'Alice', last_name: 'One', company: company)
+    employee2 = create(:employee, first_name: 'Bob', last_name: 'Two', company: company)
+    client = create(:client, employee: employee1)
+
+    other_company = create(:company)
+    create(:employee, first_name: 'Carol', last_name: 'Three', company: other_company)
+
+    visit(edit_client_path(client))
+
+    expect { select('Carol Three', from: 'Employee') }.to raise_error(Capybara::ElementNotFound)
+
+    select('Bob Two', from: 'Employee')
+    click_on('Update Client')
+    expect(current_path).to eq(employee_clients_path(employee2))
+
+    client.reload
+    expect(client.employee_id).to eq(employee2.id)
+  end
 end

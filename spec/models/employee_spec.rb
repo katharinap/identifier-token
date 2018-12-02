@@ -37,4 +37,20 @@ RSpec.describe Employee, type: :model do
       expect(employee.full_name).to eq('John Miller')
     end
   end
+
+  describe '#co_workers' do
+    it 'returns all other the employees that work at the same company' do
+      company = create(:company)
+      employee, *co_workers = create_list(:employee, 3, company: company)
+      create(:employee)
+      expect(employee.co_workers).to eq(co_workers)
+    end
+
+    it 'returns the employee as well if include_self is set to true' do
+      company = create(:company)
+      employees = create_list(:employee, 3, company: company)
+      create(:employee)
+      expect(employees.first.co_workers(include_self: true)).to eq(employees)
+    end
+  end
 end

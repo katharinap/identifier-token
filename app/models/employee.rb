@@ -24,6 +24,10 @@ class Employee < ApplicationRecord
 
   delegate :full_name, to: :name
 
+  def co_workers(include_self: false)
+    include_self ? company.employees : company.employees - [self]
+  end
+
   private
 
   def name
